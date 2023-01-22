@@ -1,5 +1,2 @@
 [workspace]
-members = [
-    "app",
-    "runner"
-]
+members = [ "host", "guest" ]

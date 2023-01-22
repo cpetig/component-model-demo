@@ -1,2 +1,5 @@
 target/
-python/markdown/
+
+# nix
+result/
+/.direnv

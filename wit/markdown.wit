@@ -1,0 +1,5 @@
+default world renderer {
+  export markdown: interface {
+    render: func(input: string) -> string
+  }
+}

@@ -1,9 +1,11 @@
-wit_bindgen_guest_rust::generate!("../wits/markdown.wit");
 use pulldown_cmark::{html, Parser};
 
+wit_bindgen_guest_rust::generate!({
+    path: "../wit/markdown.wit",
+    world: "markdown"
+});
+
 struct Markdown;
-// remember to export markdown.
-export_markdown!(Markdown);
 
 impl markdown::Markdown for Markdown {
     fn render(input: String) -> String {
@@ -13,3 +15,5 @@ impl markdown::Markdown for Markdown {
         return html_output;
     }
 }
+
+export_renderer!(Markdown);
