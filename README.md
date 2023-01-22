@@ -14,7 +14,7 @@ Make sure you have wasm32-unknown-unknown installed
 ## Running this demo 
 ```bash 
 cargo build -p guest --target wasm32-unknown-unknown
-cargo build -p host
+cargo run -p host
 ```
 
 ## Details
