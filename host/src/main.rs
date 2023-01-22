@@ -29,7 +29,14 @@ fn main() -> Result<()> {
 
     SECTION:BEGIN  */
 
-    let module = std::fs::read("./target/wasm32-unknown-unknown/release/guest.wasm")?;
+    let wasm_module_path = format!(
+        "{}/{}",
+        env!("CARGO_WORKSPACE_DIR"),
+        "target/wasm32-unknown-unknown/debug/guest.wasm"
+    );
+
+    let module =
+        std::fs::read(wasm_module_path).expect("WASM Module missing, did you build guest crate?");
 
     let component = ComponentEncoder::default()
         .module(module.as_slice())?
@@ -51,7 +58,9 @@ fn main() -> Result<()> {
 
     // Now let's use  the exported render function
     let res = renderer.markdown.render(&mut store, "# hello")?;
+
     assert_eq!(res, "<h1>hello</h1>\n");
+    println!("Out: {}", res);
 
     Ok(())
 }
