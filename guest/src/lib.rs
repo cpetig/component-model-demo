@@ -1,6 +1,6 @@
 use pulldown_cmark::{html, Parser};
 
-wit_bindgen_guest_rust::generate!({
+wit_bindgen::generate!({
     path: "../wit/markdown.wit",
     world: "markdown"
 });

@@ -57,7 +57,7 @@ fn main() -> Result<()> {
     let (renderer, _) = Renderer::instantiate(&mut store, &component, &linker)?;
 
     // Now let's use  the exported render function
-    let res = renderer.markdown.render(&mut store, "# hello")?;
+    let res = renderer.markdown.call_render(&mut store, "# hello")?;
 
     assert_eq!(res, "<h1>hello</h1>\n");
     println!("Out: {}", res);
