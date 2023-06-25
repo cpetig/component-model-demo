@@ -6,7 +6,7 @@ use wasmtime::{
     Config, Engine, Store,
 };
 
-wasmtime::component::bindgen!({ path: "../wit/markdown.wit", world: "markdown" });
+wasmtime::component::bindgen!({ path: "../wit/markdown.wit", world: "renderer" });
 
 // As guest, when you build the output is a wasm module, not a component in terms of wasmtime
 // this allows us to do it in rust however as i'll note below it's preferred to do it through the wasm-tools cli
@@ -57,7 +57,7 @@ fn main() -> Result<()> {
     let (renderer, _) = Renderer::instantiate(&mut store, &component, &linker)?;
 
     // Now let's use  the exported render function
-    let res = renderer.markdown.call_render(&mut store, "# hello")?;
+    let res = renderer.markdown().call_render(&mut store, "# hello")?;
 
     assert_eq!(res, "<h1>hello</h1>\n");
     println!("Out: {}", res);

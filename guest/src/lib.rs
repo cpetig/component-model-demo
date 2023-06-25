@@ -1,13 +1,14 @@
 use pulldown_cmark::{html, Parser};
+use crate::exports::markdown::Markdown;
 
 wit_bindgen::generate!({
     path: "../wit/markdown.wit",
-    world: "markdown"
+    world: "renderer"
 });
 
-struct Markdown;
+struct MyMarkdown;
 
-impl markdown::Markdown for Markdown {
+impl Markdown for MyMarkdown {
     fn render(input: String) -> String {
         let parser = Parser::new(&input);
         let mut html_output = String::new();
@@ -16,4 +17,4 @@ impl markdown::Markdown for Markdown {
     }
 }
 
-export_renderer!(Markdown);
+export_renderer!(MyMarkdown);
