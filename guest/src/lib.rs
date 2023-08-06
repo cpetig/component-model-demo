@@ -3,7 +3,8 @@ use crate::exports::markdown::Markdown;
 
 wit_bindgen::generate!({
     path: "../wit/markdown.wit",
-    world: "renderer"
+    world: "renderer",
+    exports: { "markdown": MyMarkdown },
 });
 
 struct MyMarkdown;
@@ -16,5 +17,3 @@ impl Markdown for MyMarkdown {
         return html_output;
     }
 }
-
-export_renderer!(MyMarkdown);
